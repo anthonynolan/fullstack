@@ -1,10 +1,15 @@
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 
-import { Link, Outlet, useLoaderData } from "react-router-dom";
-
-import axios from "axios";
+import { Outlet, useLoaderData, Form } from "react-router-dom";
 
 import GoalGrid from "./GoalGrid";
+
+import { getGoals, createGoal } from "./Goals";
+
+export async function action() {
+  const goal = await createGoal();
+  return { goal };
+}
 
 function App() {
   const goals = useLoaderData();
@@ -13,9 +18,9 @@ function App() {
     <div>
       <div>
         <GoalGrid goals={goals} />
-        <Button>
-          <Link to={`addGoal/`}>Add Goal</Link>
-        </Button>
+        <Form method="post">
+          <button type="submit">new</button>
+        </Form>
       </div>
       <div>
         <Outlet />
@@ -25,8 +30,8 @@ function App() {
 }
 
 export async function loader() {
-  const goals = await axios.get(`/api/goals/`);
-  return goals.data;
+  const goals = await getGoals();
+  return goals;
 }
 
 export default App;

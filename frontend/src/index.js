@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import AddGoal from "./routes/AddGoal";
 import Goal from "./routes/Goal";
-import App, { loader as rootLoader } from "./routes/App";
+import App, { loader as rootLoader, action as rootAction } from "./routes/App";
 import { loader as goalLoader } from "./routes/Goal";
 
 const router = createBrowserRouter([
@@ -14,6 +14,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     loader: rootLoader,
+    action: rootAction,
     children: [
       {
         path: "addGoal",
