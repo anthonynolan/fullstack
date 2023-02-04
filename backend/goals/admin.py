@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Goal, Status
+from .models import Goal, Status, Note
 
 
 class GoalAdmin(admin.ModelAdmin):
@@ -9,6 +9,6 @@ class GoalAdmin(admin.ModelAdmin):
 
 # Register your models here.
 
-# admin.site.register(Note)
+admin.site.register(Note)
 admin.site.register(Goal, GoalAdmin)
 admin.site.register(Status)
